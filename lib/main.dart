@@ -24,7 +24,6 @@ class KnomiApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.white)),
       ),
-      home: const MyEntries(),
     );
   }
 }
@@ -119,7 +118,7 @@ class _KnomiSurveyState extends State<KnomiSurvey> {
       home: Scaffold(
         body: SurveyKit(
           onResult: (SurveyResult ) {
-            // Evaluate results
+            Navigator.pushNamed(context, '/');
           },
           task: task
         )
@@ -184,7 +183,8 @@ class _KnomiSurveyState extends State<KnomiSurvey> {
           title: 'Note',
           text: 'Anything else you\'d like to note about this entry?',
           answerFormat: const TextAnswerFormat(
-              maxLines: 8
+              maxLines: 8,
+              validationRegEx: "^(?!\s*\$).+",
           ),
         ),
         CompletionStep(stepIdentifier: StepIdentifier(id: DateTime.now().toString()),
